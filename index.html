@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<!--
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<script>
+  System.import('lib/main.js');
+</script>
+-->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link href="css/fonts.css" rel='stylesheet' type='text/css'>
+<script src="build.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  "HTML-CSS": {
+    webFont: "Latin-Modern"
+  }
+});
+</script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<style>
+html {
+  margin: 0;
+}
+body {
+  color: #333;
+  font-family: "Latin Modern";
+  margin: 0;
+  font-size: 17px;
+}
+article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+}
+h1 {
+  font-family: "Latin Modern Caps";
+  border-top: solid 0.05em;
+  border-bottom: solid 0.05em;
+  text-align: center;
+  max-width: 15em;
+  margin: 1em auto;
+  font-size: 40px;
+  font-weight: normal;
+}
+h2 {
+  font-family: "Latin Modern Caps";
+  font-weight: normal;
+  text-align: center;
+}
+h3 {
+  font-weight: normal;
+  font-style: italic;
+  text-align: center;
+}
+header {
+  margin: 6em auto;
+}
+header .author, header .date {
+  text-align: center;
+}
+svg {
+  margin: 1em;
+}
+.plot {
+  border: 1px solid #CCC;
+}
+</style>
+</head>
+<body>
+<article>
+  <header>
+    <h1>Stability of a Spherical Pendulum Driven by a Circularly Moving Pivot</h1>
+    <p class="date">24 March, 2016</p>
+    <p class="author">Ernest Wong</p>
+  </header>
+  <section>
+    <h2>Steady State</h2>
+    <section>
+      <h3>First, a Thought Experiment</h3>
+      <p>From crude experiments done by hand, we find that the bob traces a circle along the horizontal plane centred along the vertical axis common to the pivot's motion. Thus, for our steady state model, we assume that the bob undergoes a perfectly uniform circular motion with a common central axis with the pivot's motion. We also assume a perfect spherical pendulum, modelled as a point mass with two degrees of freedom from the pivot at any moment, with no drag or other nonconservative forces that drains energy out from the system.</p>
+      <p>First we consider the cases when the angular velocity of the bob's trajectory is equal to the pivot's.</p>
+      <p>When the bob and the pivot are exactly in-phase, then the bob can either trace a smaller, equal, or larger circle than the pivot. However, if the bob traces a smaller circle, then the tension of the string is always pulling the bob outwards from the centre. There are no force that could supply the centripetal force required for the bob's circular motion. Thus, the bob can only trace a larger circle if in-phase.</p>
+      <p>When the bob and the pivot are exactly out-of-phase, then it is possible to provide an inward tensional force.</p>
+      <p>When the bob is not exactly in or out of phase, then the tension of the string will provide tagential acceleration to the bob, thus changing the magnitude of the bob's velocity. That means the motion is not uniform and we can ignore this condition.</p>
+      <p>Now we note the case when the angular velocity is not equal to the pivot's. However, this means that at times the bob is in-phase and sometimes it is not, and throughout its motion the bob will therefore experience tagential acceleration, violating the uniform circular motion condition.</p>
+    </section>
+    <section>
+      <h3>Next, a Quantitative Model</h3>
+      <p>Because the motion is always horizontal, there is no resulting vertical acceleration. This means that the vertical component of tension must balance out the effect of gravity. Equating the vertical component of tension to gravity gives
+      \[
+        T = \frac{mg}{\cos\theta},
+      \]
+      and from this, only the horizontal component of tension remains acting on the bob,
+      \[
+        F_{\text{net}} = \text{\(mg\tan\theta\) towards the centre.}
+      \]
+      This serves as the centripetal force that drives the bob into a circular motion with radius \(r_b = \ell\sin\theta - r_p\), so equating \(F_\text{net}\) with the centripetal force \(F_c\), we obtain
+      \begin{align}
+        F_\text{c} &= F_\text{net} \\
+        m\omega^2r_b &= mg\tan\theta, \\
+        \omega^2 &= \frac{g\tan\theta}{\ell\sin\theta - r_p}.
+      \end{align}
+      This can be rewritten in terms of \(r_b\) to get
+      \[
+        \omega^2 = \frac{g}{r_b}\frac{r_b+r_p}{\sqrt{l^2 - (r_b + r_p)^2}}.
+      \]
+      </p>
+    </section>
+    <section>
+      <h3>What does this all mean?</h3>
+      <p>Let's plot \(\theta\) against \(\omega\) using the model.</p>
+      <div id="steadystate-plot"></div>
+    </section>
+  </section>
+<svg id="showcase"></svg>
+<div style="display: inline-block; width: 210px">
+<svg class="plot" id="showcase-phasediff"></svg>
+<svg class="plot" id="showcase-angle1"></svg>
+<svg class="plot" id="showcase-dangle2"></svg>
+</div>
+<svg id="showcase-phasevisual"></svg>
+
+<svg id="stable-lag-phase"></svg>
+<svg id="stable-lag-angle1"></svg>
+<svg id="stable-lag-dangle2inc"></svg>
+<svg id="stable-lag-phaseinc"></svg>
+
+<svg id="stable-lead-phase"></svg>
+<svg id="stable-lead-angle1"></svg>
+<svg id="stable-lead-dangle2dec"></svg>
+<svg id="stable-lead-phasedec"></svg>
+</article>
+</body>
+</html>

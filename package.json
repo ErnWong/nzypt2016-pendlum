@@ -1,0 +1,17 @@
+{
+  "jspm": {
+    "dependencies": {
+      "ode-rk4": "npm:ode-rk4@^1.1.3",
+      "plotly.js": "npm:plotly.js@^1.7.0",
+      "wout/svg.js": "github:wout/svg.js@^2.2.5"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  },
+  "devDependencies": {
+    "jspm": "^0.16.31"
+  }
+}
